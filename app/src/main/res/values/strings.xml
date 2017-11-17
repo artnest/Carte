@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Carte - Belarusian Restaurants &amp; Cafes</string>
+
+    <string name="action_search_city">Search city</string>
+    <string name="action_search_restaurant">Search restaurant</string>
+    <string name="action_open_settings">Settings</string>
 </resources>
