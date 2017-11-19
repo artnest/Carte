@@ -1,5 +1,4 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/CardView.Light"
     android:layout_width="match_parent"
@@ -8,38 +7,9 @@
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp">
 
-    <android.support.constraint.ConstraintLayout
+    <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/image_dish"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="H,1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription"
-            tools:src="@drawable/test" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="#7F000000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/space_top" />
-
-        <Space
-            android:id="@+id/space_top"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/text_name"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/text_name"
@@ -47,54 +17,62 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="#FFFFFFFF"
-            app:layout_constraintBottom_toTopOf="@+id/text_address"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="#DE000000"
+            app:layout_constraintEnd_toStartOf="@+id/image_dish"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="«Селёдочка под водочку»" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Баклажаны «На скорую руку»" />
 
         <TextView
-            android:id="@+id/text_address"
+            android:id="@+id/text_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="#B3FFFFFF"
-            app:layout_constraintBottom_toTopOf="@+id/button_show_map"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="#8A000000"
+            app:layout_constraintEnd_toStartOf="@+id/image_dish"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="Филе сельди, лук маринованный, картофель" />
+            app:layout_constraintTop_toBottomOf="@+id/text_name"
+            tools:text="Баклажаны, сыр, чеснок, майонез, зелень" />
 
-        <Button
-            android:id="@+id/button_show_map"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/image_dish"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/details_test_128" />
+
+        <TextView
+            android:id="@+id/text_price"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:minWidth="0dp"
-            android:paddingEnd="8dp"
-            android:paddingStart="8dp"
-            android:text="@string/action_show_map"
-            android:textColor="#FFFFFFFF"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/dish_price"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#DE000000"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_dish" />
 
-        <Button
-            android:id="@+id/button_show_more"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/text_weight"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:layout_marginStart="8dp"
-            android:minWidth="0dp"
-            android:paddingEnd="8dp"
-            android:paddingStart="8dp"
-            android:text="@string/action_show_more"
-            android:textColor="#FFFFFFFF"
-            app:layout_constraintStart_toEndOf="@+id/button_show_map"
-            app:layout_constraintTop_toTopOf="@+id/button_show_map" />
+            android:text="@string/dish_weight"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="#DE000000"
+            app:layout_constraintBaseline_toBaselineOf="@id/text_price"
+            app:layout_constraintStart_toEndOf="@+id/text_price"
+            app:layout_constraintTop_toTopOf="@+id/text_price" />
 
     </android.support.constraint.ConstraintLayout>
 

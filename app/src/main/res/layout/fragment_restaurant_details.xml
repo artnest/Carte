@@ -80,7 +80,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_menu_updated" />
+            app:layout_constraintTop_toBottomOf="@+id/text_menu_updated"
+            tools:listitem="@layout/item_dish" />
 
     </android.support.constraint.ConstraintLayout>
 
