@@ -27,7 +27,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/details_delivery"
-            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_interior" />
 
@@ -37,7 +37,7 @@
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:text="@string/details_booking"
-            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintStart_toEndOf="@+id/text_delivery"
             app:layout_constraintTop_toTopOf="@+id/text_delivery" />
 
@@ -47,6 +47,7 @@
             android:layout_height="0dp"
             android:layout_marginEnd="8dp"
             android:text="@string/details_open_time"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintEnd_toStartOf="@+id/text_average_bill"
             app:layout_constraintTop_toTopOf="@+id/text_average_bill" />
 
@@ -57,7 +58,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/details_average_bill"
-            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_interior" />
 
@@ -68,7 +69,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/details_menu_updated"
-            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_average_bill" />
 

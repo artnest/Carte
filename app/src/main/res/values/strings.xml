@@ -9,12 +9,12 @@
     <string name="action_show_more">Подробнее</string>
 
     <string name="title_map">На карте</string>
-    <string name="title_telephones">Телефоны</string>
+    <string name="title_phones">Телефоны</string>
     <string name="title_open_times">Время работы</string>
 
     <string name="details_delivery">Доставка</string>
     <string name="details_booking">Бронь</string>
-    <string name="details_open_time">%1$d - %2$d</string>
+    <string name="details_open_time">%1$d−%2$d</string>
     <string name="details_average_bill">%1$d руб.</string>
     <string name="details_menu_updated">Меню обновлено %1$s</string>
 
