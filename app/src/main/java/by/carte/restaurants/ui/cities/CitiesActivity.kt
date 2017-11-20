@@ -10,7 +10,7 @@ class CitiesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cities)
 
-        fragmentManager.beginTransaction()
+        supportFragmentManager.beginTransaction()
                 .replace(R.id.container, CitiesFragment.newInstance())
                 .commit()
     }

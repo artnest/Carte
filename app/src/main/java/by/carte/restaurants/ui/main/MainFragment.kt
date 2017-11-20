@@ -1,8 +1,8 @@
 package by.carte.restaurants.ui.main
 
 
-import android.app.Fragment
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import by.carte.restaurants.R
@@ -14,7 +14,7 @@ class MainFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle) =
+                              savedInstanceState: Bundle?) =
             inflater.inflate(R.layout.fragment_main, container, false)!!
 
     companion object {
