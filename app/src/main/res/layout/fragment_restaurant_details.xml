@@ -26,8 +26,14 @@
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:background="@drawable/btn_delivery"
+            android:paddingBottom="4dp"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            android:paddingTop="4dp"
             android:text="@string/details_delivery"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_interior" />
 
@@ -35,11 +41,17 @@
             android:id="@+id/text_booking"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/btn_booking"
+            android:paddingBottom="4dp"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            android:paddingTop="4dp"
             android:text="@string/details_booking"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            app:layout_constraintStart_toEndOf="@+id/text_delivery"
-            app:layout_constraintTop_toTopOf="@+id/text_delivery" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/text_delivery"
+            app:layout_constraintStart_toEndOf="@+id/text_delivery" />
 
         <TextView
             android:id="@+id/text_open_time"
@@ -48,8 +60,8 @@
             android:layout_marginEnd="8dp"
             android:text="@string/details_open_time"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            app:layout_constraintEnd_toStartOf="@+id/text_average_bill"
-            app:layout_constraintTop_toTopOf="@+id/text_average_bill" />
+            app:layout_constraintBottom_toBottomOf="@+id/text_average_bill"
+            app:layout_constraintEnd_toStartOf="@+id/text_average_bill" />
 
         <TextView
             android:id="@+id/text_average_bill"
@@ -59,6 +71,8 @@
             android:layout_marginTop="16dp"
             android:text="@string/details_average_bill"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_interior" />
 

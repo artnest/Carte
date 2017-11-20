@@ -1,4 +1,4 @@
-package by.carte.carte_restaurants
+package by.carte.restaurants
 
 import org.junit.Test
 
