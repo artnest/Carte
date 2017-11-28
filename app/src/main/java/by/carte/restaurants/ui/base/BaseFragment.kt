@@ -4,12 +4,13 @@ import android.content.Context
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
+import android.support.annotation.LayoutRes
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-abstract class BaseFragment<T: ViewDataBinding, V: BaseViewModel<*>>: Fragment() {
+abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragment() {
 
     open lateinit var activity: BaseActivity<T, V>
     private lateinit var viewDataBinding: T
@@ -42,4 +43,11 @@ abstract class BaseFragment<T: ViewDataBinding, V: BaseViewModel<*>>: Fragment()
         viewDataBinding.setVariable(getBindingVariable(), viewModel)
         viewDataBinding.executePendingBindings()
     }
+
+    abstract fun getViewModel(): V
+
+    abstract fun getBindingVariable(): Int
+
+    @LayoutRes
+    abstract fun getLayoutId(): Int
 }
