@@ -1,4 +1,4 @@
-package by.carte.restaurants.utils.rx
+package by.carte.restaurants.util.rx
 
 import io.reactivex.Scheduler
 

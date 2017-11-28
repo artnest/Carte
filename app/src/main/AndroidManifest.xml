@@ -22,7 +22,7 @@
 
         <activity android:name=".ui.cities.CitiesActivity" />
 
-        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name=".ui.restaurants.RestaurantsActivity" />
     </application>
 
 </manifest>
