@@ -3,7 +3,7 @@ package by.carte.restaurants.ui.base
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
 import by.carte.restaurants.data.DataManager
-import by.carte.restaurants.util.rx.SchedulerProvider
+import by.carte.restaurants.utils.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseViewModel<N : Navigator>(val dataManager: DataManager,

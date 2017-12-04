@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import by.carte.restaurants.R
 import by.carte.restaurants.ui.restaurants.RestaurantsActivity
-import by.carte.restaurants.util.replaceFragmentInActivity
+import by.carte.restaurants.utils.replaceFragmentInActivity
 import com.example.android.architecture.blueprints.todoapp.util.obtainViewModel
 import com.example.android.architecture.blueprints.todoapp.util.replaceFragmentInActivity
 import kotlinx.android.synthetic.main.partial_toolbar.*
