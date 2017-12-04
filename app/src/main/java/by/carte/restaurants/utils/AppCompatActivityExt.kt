@@ -1,4 +1,4 @@
-package by.carte.restaurants.util
+package by.carte.restaurants.utils
 
 /**
  * Various extension functions for AppCompatActivity.
