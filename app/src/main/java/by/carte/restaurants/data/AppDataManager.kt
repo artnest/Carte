@@ -24,19 +24,19 @@ class AppDataManager(private val context: Context,
         dbHelper.getAllRestaurants()
     }
 
-    override fun getAvailableCities(): Observable<CitiesResponse> {
-        return apiHelper.getAvailableCities()
+    override fun getCitiesApiCall(): Observable<CitiesResponse> {
+        return apiHelper.getCitiesApiCall()
     }
 
-    override fun getRestaurantsForCity() {
-        apiHelper.getRestaurantsForCity()
+    override fun getRestaurantsForCityApiCall(): Observable<CitiesResponse> {
+        TODO("not implemented")
     }
 
-    override fun getRestaurantInfo() {
-        apiHelper.getRestaurantInfo()
+    override fun getRestaurantInfoApiCall(): Observable<CitiesResponse> {
+        TODO("not implemented")
     }
 
-    override fun getPhotoForRestaurant() {
-        apiHelper.getPhotoForRestaurant()
+    override fun getPhotoForRestaurantApiCall(): Observable<CitiesResponse> {
+        TODO("not implemented")
     }
 }

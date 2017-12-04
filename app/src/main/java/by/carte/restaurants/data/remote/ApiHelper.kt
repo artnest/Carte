@@ -5,11 +5,11 @@ import io.reactivex.Observable
 
 interface ApiHelper {
 
-    fun getAvailableCities() : Observable<CitiesResponse>
+    fun getCitiesApiCall(): Observable<CitiesResponse>
 
-    fun getRestaurantsForCity()
+    fun getRestaurantsForCityApiCall(): Observable<CitiesResponse>
 
-    fun getRestaurantInfo()
+    fun getRestaurantInfoApiCall(): Observable<CitiesResponse>
 
-    fun getPhotoForRestaurant()
+    fun getPhotoForRestaurantApiCall(): Observable<CitiesResponse>
 }
