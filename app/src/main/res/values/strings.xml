@@ -20,4 +20,6 @@
 
     <string name="dish_price">%1$f р.</string>
     <string name="dish_weight">%1$s г</string>
+
+    <string name="error_basic">Нет соединения, повторите попытку позже</string>
 </resources>

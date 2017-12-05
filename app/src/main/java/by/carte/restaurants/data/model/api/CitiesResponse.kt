@@ -1,5 +1,6 @@
 package by.carte.restaurants.data.model.api
 
 data class CitiesResponse(
-        val statusCode: String
+        val statusCode: String,
+        val data: String
 )

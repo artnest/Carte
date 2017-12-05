@@ -5,16 +5,12 @@ package by.carte.restaurants.utils
  */
 
 import android.app.Activity
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProviders
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
-import by.carte.restaurants.ViewModelFactory
-import com.example.android.architecture.blueprints.todoapp.ViewModelFactory
 
 
 const val ADD_EDIT_RESULT_OK = Activity.RESULT_FIRST_USER + 1
@@ -47,9 +43,6 @@ fun AppCompatActivity.setupActionBar(@IdRes toolbarId: Int, action: ActionBar.()
         action()
     }
 }
-
-fun <T : ViewModel> AppCompatActivity.obtainViewModel(viewModelClass: Class<T>) =
-        ViewModelProviders.of(this, ViewModelFactory.getInstance(application)).get(viewModelClass)
 
 /**
  * Runs a FragmentTransaction, then calls commit().

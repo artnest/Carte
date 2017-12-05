@@ -1,53 +1,85 @@
 package by.carte.restaurants.ui.base
 
+import android.app.ProgressDialog
 import android.content.Context
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
 import android.os.Bundle
-import android.support.annotation.LayoutRes
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 
-abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragment() {
+abstract class BaseFragment : MvpView, Fragment() {
 
-    open lateinit var activity: BaseActivity<T, V>
-    private lateinit var viewDataBinding: T
-    private lateinit var viewModel: V
-    private lateinit var rootView: View
+    var activity: BaseActivity? = null
+        private set
+
+    private lateinit var progressDialog: ProgressDialog
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUp(view)
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is BaseActivity<*, *>) {
-            activity = context as BaseActivity<T, V>
-            // activity.onFragmentAttached()
+
+        if (context is BaseActivity) {
+            activity = context
+            activity!!.onFragmentAttached()
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        // performDependencyInjection()
-        super.onCreate(savedInstanceState)
-
-        viewModel = getViewModel()
+    override fun showLoading() {
+        hideLoading()
+        // TODO: show loading dialog
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewDataBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
-        rootView = viewDataBinding.root
-        return rootView
+    override fun hideLoading() {
+        // TODO: hide loading dialog
+        /*if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.cancel();
+        }*/
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewDataBinding.setVariable(getBindingVariable(), viewModel)
-        viewDataBinding.executePendingBindings()
+    override fun onError(resId: Int) {
+        activity?.onError(resId)
     }
 
-    abstract fun getViewModel(): V
+    override fun onError(message: String?) {
+        activity?.onError(message)
+    }
 
-    abstract fun getBindingVariable(): Int
+    override fun showMessage(resId: Int) {
+        activity?.showMessage(resId)
+    }
 
-    @LayoutRes
-    abstract fun getLayoutId(): Int
+    override fun showMessage(message: String?) {
+        activity?.showMessage(message)
+    }
+
+    override fun isNetworkConnected() = activity?.isNetworkConnected() ?: false
+
+    override fun onDetach() {
+        activity = null
+        super.onDetach()
+    }
+
+    override fun hideKeyboard() {
+        activity?.hideKeyboard()
+    }
+
+    protected abstract fun setUp(view: View)
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
+    interface Callback {
+
+        fun onFragmentAttached()
+
+        fun onFragmentDetached(tag: String)
+    }
 }

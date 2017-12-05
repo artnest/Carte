@@ -1,35 +1,23 @@
 package by.carte.restaurants.ui.cities
 
-import android.arch.lifecycle.Observer
-import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import by.carte.restaurants.R
-import by.carte.restaurants.ui.restaurants.RestaurantsActivity
+import by.carte.restaurants.ui.base.BaseActivity
 import by.carte.restaurants.utils.replaceFragmentInActivity
-import com.example.android.architecture.blueprints.todoapp.util.obtainViewModel
-import com.example.android.architecture.blueprints.todoapp.util.replaceFragmentInActivity
 import kotlinx.android.synthetic.main.partial_toolbar.*
 
-class CitiesActivity : AppCompatActivity() {
-
-    private lateinit var viewModel: CitiesViewModel
+class CitiesActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cities)
 
+        setUp()
+    }
+
+    override fun setUp() {
         setupToolbar()
-
         setupViewFragment()
-
-        viewModel = obtainViewModel().apply {
-            openRestaurantsEvent.observe(this@CitiesActivity, Observer { cityId ->
-                cityId?.let {
-                    openRestaurantsForCity(cityId)
-                }
-            })
-        }
     }
 
     private fun setupToolbar() {
@@ -58,15 +46,4 @@ class CitiesActivity : AppCompatActivity() {
     private fun clearListeners() {
         toolbar.setOnMenuItemClickListener(null)
     }
-
-    override fun openRestaurantsForCity(cityId: String) {
-        val intent = Intent(this, RestaurantsActivity::class.java).apply {
-            putExtra(RestaurantsActivity.EXTRA_CITY_ID, cityId)
-        }
-        // TODO: add flag CLEAR_TOP
-        startActivity(intent)
-        finish()
-    }
-
-    fun obtainViewModel() = obtainViewModel(CitiesViewModel::class.java)
 }
