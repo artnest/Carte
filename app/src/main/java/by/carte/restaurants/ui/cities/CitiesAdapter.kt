@@ -10,14 +10,14 @@ import by.carte.restaurants.utils.inflate
 
 class CitiesAdapter(private val citiesResponseList: MutableList<CitiesResponse>) :
         RecyclerView.Adapter<CitiesAdapter.CityViewHolder>() {
-    // TODO: add listener to items as lambda (from fragment)
-    // TODO: use callback to fragment as item click listener
+
+    var callback: Callback? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             CityViewHolder(parent.inflate(R.layout.item_city))
 
     override fun onBindViewHolder(holder: CityViewHolder, position: Int) =
-            holder.bind(citiesResponseList[position])
+            holder.bind(citiesResponseList[position], callback)
 
     override fun getItemCount() = citiesResponseList.size
 
@@ -28,8 +28,14 @@ class CitiesAdapter(private val citiesResponseList: MutableList<CitiesResponse>)
 
     class CityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(item: CitiesResponse) {
+        fun bind(item: CitiesResponse, callback: Callback?) {
+            itemView.setOnClickListener { callback?.onItemClicked(item) }
             itemView.findViewById<TextView>(R.id.text_title).text = item.data
         }
+    }
+
+    interface Callback {
+
+        fun onItemClicked(item: CitiesResponse)
     }
 }

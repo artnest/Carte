@@ -11,29 +11,34 @@ import by.carte.restaurants.data.model.api.CitiesResponse
 import by.carte.restaurants.ui.base.BaseFragment
 import by.carte.restaurants.ui.restaurants.RestaurantsActivity
 import kotlinx.android.synthetic.main.fragment_cities.*
+import javax.inject.Inject
 
-class CitiesFragment : CitiesMvpView, BaseFragment() {
+class CitiesFragment : CitiesMvpView, CitiesAdapter.Callback, BaseFragment() {
 
+    @Inject
     lateinit var presenter: CitiesMvpPresenter<CitiesMvpView>
 
-    private lateinit var citiesAdapter: CitiesAdapter
+    @Inject
+    lateinit var citiesAdapter: CitiesAdapter
+
+    @Inject
+    lateinit var layoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // presenter = CitiesPresenter(AppDataManager(), AppSchedulerProvider(), CompositeDisposable())
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_cities, container, false)!!
 
+        // citiesAdapter.callback = this
+
         presenter.onAttach(this)
         return view
     }
 
     override fun setUp(view: View) {
-        val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recycler_cities.layoutManager = layoutManager
         citiesAdapter = CitiesAdapter(mutableListOf())
@@ -54,6 +59,10 @@ class CitiesFragment : CitiesMvpView, BaseFragment() {
         val intent = RestaurantsActivity.getStartIntent(activity!!, cityId)
         startActivity(intent)
         activity!!.finish()
+    }
+
+    override fun onItemClicked(item: CitiesResponse) {
+        presenter.openRestaurantsActivity(item.data)
     }
 
     companion object {
