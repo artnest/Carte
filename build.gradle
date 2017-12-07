@@ -38,12 +38,12 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
 ext {
     // SDK
     minSdkVersion = 23
-    targetSdkVersion = 26
-    compileSdkVersion = 26
+    targetSdkVersion = 27
+    compileSdkVersion = 27
 
     // App dependencies
-    supportLibraryVersion = '26.1.0'
-    constraintLayoutVersion = '1.0.2'
+    supportLibraryVersion = '27.0.2'
+    constraintLayoutVersion = '1.1.0-beta3'
     daggerVersion = '2.11'
     gsonVersion = '2.8.2'
     glideVersion = '3.7.0'

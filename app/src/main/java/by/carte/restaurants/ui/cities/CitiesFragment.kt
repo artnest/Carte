@@ -18,27 +18,26 @@ class CitiesFragment : CitiesMvpView, CitiesAdapter.Callback, BaseFragment() {
     @Inject
     lateinit var presenter: CitiesMvpPresenter<CitiesMvpView>
 
-    @Inject
-    lateinit var citiesAdapter: CitiesAdapter
-
-    @Inject
-    lateinit var layoutManager: LinearLayoutManager
+    private lateinit var citiesAdapter: CitiesAdapter
+    private lateinit var layoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        citiesAdapter = CitiesAdapter(mutableListOf())
+        citiesAdapter.callback = this
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_cities, container, false)!!
 
-        // citiesAdapter.callback = this
-
         presenter.onAttach(this)
         return view
     }
 
     override fun setUp(view: View) {
+        layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recycler_cities.layoutManager = layoutManager
         citiesAdapter = CitiesAdapter(mutableListOf())
