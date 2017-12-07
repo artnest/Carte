@@ -29,8 +29,9 @@ class CitiesAdapter(private val citiesResponseList: MutableList<CitiesResponse>)
     class CityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: CitiesResponse, callback: Callback?) {
-            itemView.setOnClickListener { callback?.onItemClicked(item) }
             itemView.findViewById<TextView>(R.id.text_title).text = item.data
+
+            itemView.setOnClickListener { callback?.onItemClicked(item) }
         }
     }
 

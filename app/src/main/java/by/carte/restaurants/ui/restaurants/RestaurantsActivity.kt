@@ -12,10 +12,10 @@ class RestaurantsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_restaurants)
 
         supportFragmentManager.beginTransaction()
-                .replace(R.id.container, RestaurantsFragment.newInstance())
+                .replace(R.id.frame_container, RestaurantsFragment.newInstance())
                 .commit()
     }
 
@@ -23,6 +23,5 @@ class RestaurantsActivity : AppCompatActivity() {
         fun getStartIntent(context: Context, cityId: String) =
                 Intent(context, RestaurantsActivity::class.java)
                         .putExtra(EXTRA_CITY_ID, cityId)!!
-        // TODO: add flag CLEAR_TOP ?
     }
 }

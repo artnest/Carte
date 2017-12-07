@@ -6,16 +6,18 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import by.carte.restaurants.CarteApp
 import by.carte.restaurants.R
 import by.carte.restaurants.data.model.api.CitiesResponse
 import by.carte.restaurants.ui.base.BaseFragment
 import by.carte.restaurants.ui.restaurants.RestaurantsActivity
+import by.carte.restaurants.utils.rx.AppSchedulerProvider
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_cities.*
-import javax.inject.Inject
 
-class CitiesFragment : CitiesMvpView, CitiesAdapter.Callback, BaseFragment() {
+class CitiesFragment : CitiesMvpView, CitiesAdapter.Callback,
+        BaseFragment() {
 
-    @Inject
     lateinit var presenter: CitiesMvpPresenter<CitiesMvpView>
 
     private lateinit var citiesAdapter: CitiesAdapter
@@ -23,6 +25,8 @@ class CitiesFragment : CitiesMvpView, CitiesAdapter.Callback, BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        presenter = CitiesPresenter(CarteApp.dataManager, AppSchedulerProvider, CompositeDisposable())
 
         citiesAdapter = CitiesAdapter(mutableListOf())
         citiesAdapter.callback = this
@@ -40,7 +44,6 @@ class CitiesFragment : CitiesMvpView, CitiesAdapter.Callback, BaseFragment() {
         layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recycler_cities.layoutManager = layoutManager
-        citiesAdapter = CitiesAdapter(mutableListOf())
         recycler_cities.adapter = citiesAdapter
 
         presenter.onViewPrepared()

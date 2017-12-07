@@ -3,7 +3,7 @@ package by.carte.restaurants.utils.rx
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class AppSchedulerProvider : SchedulerProvider {
+object AppSchedulerProvider : SchedulerProvider {
 
     override fun ui() = AndroidSchedulers.mainThread()!!
 

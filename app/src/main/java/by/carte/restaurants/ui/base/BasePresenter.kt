@@ -1,13 +1,16 @@
 package by.carte.restaurants.ui.base
 
+import android.util.Log
 import by.carte.restaurants.data.DataManager
 import by.carte.restaurants.utils.rx.SchedulerProvider
 import com.androidnetworking.error.ANError
 import io.reactivex.disposables.CompositeDisposable
 
-open class BasePresenter<V : MvpView>(open val dataManager: DataManager,
-                                      open val schedulerProvider: SchedulerProvider,
-                                      open val compositeDisposable: CompositeDisposable) : MvpPresenter<V> {
+open class BasePresenter<V : MvpView>(
+        open val dataManager: DataManager,
+        open val schedulerProvider: SchedulerProvider,
+        open val compositeDisposable: CompositeDisposable
+) : MvpPresenter<V> {
 
     var mvpView: V? = null
         private set
@@ -28,7 +31,8 @@ open class BasePresenter<V : MvpView>(open val dataManager: DataManager,
     }
 
     override fun handleApiError(error: ANError) {
-        TODO("not implemented")
+        // TODO: handle api error
+        Log.d("API_ERROR", "error_code")
     }
 
     class MvpViewNotAttachedException() : RuntimeException(

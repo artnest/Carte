@@ -4,14 +4,9 @@ import android.os.Bundle
 import by.carte.restaurants.R
 import by.carte.restaurants.ui.base.BaseActivity
 import by.carte.restaurants.utils.replaceFragmentInActivity
-import dagger.Lazy
 import kotlinx.android.synthetic.main.partial_toolbar.*
-import javax.inject.Inject
 
 class CitiesActivity : BaseActivity() {
-
-    @Inject
-    lateinit var citiesFragmentProvider: Lazy<CitiesFragment>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,12 +28,12 @@ class CitiesActivity : BaseActivity() {
                 else -> false
             }
         }
-        toolbar.setTitle(R.string.app_name)
+        toolbar.setTitle(R.string.app_name_short)
     }
 
     private fun setupViewFragment() {
         supportFragmentManager.findFragmentById(R.id.frame_container) ?:
-                citiesFragmentProvider.get().let {
+                CitiesFragment.newInstance().let {
                     replaceFragmentInActivity(it, R.id.frame_container)
                 }
     }

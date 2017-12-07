@@ -4,7 +4,7 @@ import by.carte.restaurants.data.model.api.CitiesResponse
 import com.rx2androidnetworking.Rx2AndroidNetworking
 import io.reactivex.Observable
 
-class AppApiHelper: ApiHelper {
+object AppApiHelper: ApiHelper {
 
     override fun getCitiesApiCall(): Observable<CitiesResponse> {
         return Rx2AndroidNetworking.get(ENDPOINT_CITIES)

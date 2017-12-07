@@ -4,9 +4,7 @@ import android.content.Context
 import by.carte.restaurants.data.model.api.CitiesResponse
 import by.carte.restaurants.data.remote.ApiHelper
 import io.reactivex.Observable
-import javax.inject.Singleton
 
-@Singleton
 class AppDataManager(private val context: Context,
                      private val apiHelper: ApiHelper) : DataManager {
 

@@ -5,15 +5,15 @@ import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatActivity
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
 import by.carte.restaurants.R
 import by.carte.restaurants.utils.NetworkUtils
-import dagger.android.support.DaggerAppCompatActivity
 
 abstract class BaseActivity : MvpView, BaseFragment.Callback,
-        DaggerAppCompatActivity() {
+        AppCompatActivity() {
 
     private lateinit var progressDialog: ProgressDialog
 

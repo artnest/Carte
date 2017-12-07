@@ -15,7 +15,7 @@ class RestaurantsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?) =
-            inflater.inflate(R.layout.fragment_main, container, false)!!
+            inflater.inflate(R.layout.fragment_restaurants, container, false)!!
 
     companion object {
         fun newInstance(): RestaurantsFragment = RestaurantsFragment().apply {
