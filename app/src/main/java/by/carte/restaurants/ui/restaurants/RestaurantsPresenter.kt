@@ -1,4 +1,4 @@
-package by.carte.restaurants.ui.cities
+package by.carte.restaurants.ui.restaurants
 
 import by.carte.restaurants.data.DataManager
 import by.carte.restaurants.ui.base.BasePresenter
@@ -7,14 +7,14 @@ import com.androidnetworking.error.ANError
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 
-class CitiesPresenter<V : CitiesMvpView>(
+class RestaurantsPresenter<V : RestaurantsMvpView>(
         override val dataManager: DataManager,
         override val schedulerProvider: SchedulerProvider
-) : CitiesMvpPresenter<V>, BasePresenter<V>(dataManager, schedulerProvider) {
+) : RestaurantsMvpPresenter<V>, BasePresenter<V>(dataManager, schedulerProvider) {
 
     private var subscription: Disposable? = null
 
-    override fun loadCities() {
+    override fun loadRestaurants() {
         mvpView?.showLoading()
         subscription = dataManager
                 .getCitiesApiCall()
@@ -22,7 +22,8 @@ class CitiesPresenter<V : CitiesMvpView>(
                 .observeOn(schedulerProvider.ui())
                 .subscribeBy(
                         onNext = { citiesResponse ->
-                            mvpView?.setData(citiesResponse.data)
+                            // TODO: it.data
+                            mvpView?.setData(listOf())
                             mvpView?.showContent()
                         },
                         onError = { error ->
@@ -39,6 +40,6 @@ class CitiesPresenter<V : CitiesMvpView>(
         }
     }
 
-    override fun openRestaurantsActivity(cityId: Int) =
-            mvpView!!.openRestaurantsActivity(cityId)
+    override fun openRestaurantDetailsActivity(restaurantId: String) =
+            mvpView!!.openRestaurantDetailsActivity(restaurantId)
 }

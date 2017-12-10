@@ -6,6 +6,10 @@
     <string name="action_search_restaurant">Search restaurant</string>
     <string name="action_open_settings">Settings</string>
 
+    <string name="regions_choose_region">Выберите область</string>
+
+    <string name="cities_choose_city">Выберите город</string>
+
     <string name="action_show_map">На карте</string>
     <string name="action_show_more">Подробнее</string>
 

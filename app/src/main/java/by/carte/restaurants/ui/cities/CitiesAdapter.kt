@@ -5,10 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import by.carte.restaurants.R
-import by.carte.restaurants.data.model.api.CitiesResponse
+import by.carte.restaurants.data.remote.model.CityDataItem
 import by.carte.restaurants.utils.inflate
 
-class CitiesAdapter(private val citiesResponseList: MutableList<CitiesResponse>) :
+class CitiesAdapter(private val citiesList: MutableList<CityDataItem>) :
         RecyclerView.Adapter<CitiesAdapter.CityViewHolder>() {
 
     var callback: Callback? = null
@@ -17,19 +17,19 @@ class CitiesAdapter(private val citiesResponseList: MutableList<CitiesResponse>)
             CityViewHolder(parent.inflate(R.layout.item_city))
 
     override fun onBindViewHolder(holder: CityViewHolder, position: Int) =
-            holder.bind(citiesResponseList[position], callback)
+            holder.bind(citiesList[position], callback)
 
-    override fun getItemCount() = citiesResponseList.size
+    override fun getItemCount() = citiesList.size
 
-    fun addItems(citiesList: List<CitiesResponse>) {
-        citiesResponseList.addAll(citiesList)
-        notifyDataSetChanged()
+    fun setCities(cityItemList: List<CityDataItem>) {
+        citiesList.clear()
+        citiesList.addAll(cityItemList)
     }
 
     class CityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(item: CitiesResponse, callback: Callback?) {
-            itemView.findViewById<TextView>(R.id.text_title).text = item.data
+        fun bind(item: CityDataItem, callback: Callback?) {
+            itemView.findViewById<TextView>(R.id.text_title).text = item.name
 
             itemView.setOnClickListener { callback?.onItemClicked(item) }
         }
@@ -37,6 +37,6 @@ class CitiesAdapter(private val citiesResponseList: MutableList<CitiesResponse>)
 
     interface Callback {
 
-        fun onItemClicked(item: CitiesResponse)
+        fun onItemClicked(item: CityDataItem)
     }
 }

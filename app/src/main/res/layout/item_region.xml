@@ -17,6 +17,6 @@
         android:layout_margin="8dp"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        tools:text="Минск" />
+        tools:text="Минская" />
 
 </android.support.v7.widget.CardView>

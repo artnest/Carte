@@ -1,9 +1,12 @@
 package by.carte.restaurants.data.remote
 
-import by.carte.restaurants.data.model.api.CitiesResponse
+import by.carte.restaurants.data.remote.model.CitiesResponse
+import by.carte.restaurants.data.remote.model.RegionsResponse
 import io.reactivex.Observable
 
 interface ApiHelper {
+
+    fun getRegionsApiCall(): Observable<RegionsResponse>
 
     fun getCitiesApiCall(): Observable<CitiesResponse>
 

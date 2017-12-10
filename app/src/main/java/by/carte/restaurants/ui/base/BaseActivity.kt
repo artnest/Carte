@@ -1,6 +1,5 @@
 package by.carte.restaurants.ui.base
 
-import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -15,29 +14,34 @@ import by.carte.restaurants.utils.NetworkUtils
 abstract class BaseActivity : MvpView, BaseFragment.Callback,
         AppCompatActivity() {
 
-    private lateinit var progressDialog: ProgressDialog
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(newBase)
+    protected abstract fun setUp()
+
+    override fun onFragmentAttached() {
+    }
+
+    override fun onFragmentDetached(tag: String) {
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     // TODO: request permissions (try to use RxPermissions)
 
     override fun showLoading() {
-        hideLoading()
-        // TODO: show loading dialog
     }
 
-    override fun hideLoading() {
-        // TODO: hide loading dialog
-        /*if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.cancel();
-        }*/
+    override fun showContent() {
     }
+
+    override fun showError(resId: Int) = showError(getString(resId))
+
+    override fun showError(message: String?) =
+            message?.let { showSnackbar(it) } ?: showSnackbar(getString(R.string.error_basic))
 
     private fun showSnackbar(message: String) {
         val snackbar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT)
@@ -45,11 +49,6 @@ abstract class BaseActivity : MvpView, BaseFragment.Callback,
         snackbarTextView.setTextColor(ContextCompat.getColor(this, android.R.color.white))
         snackbar.show()
     }
-
-    override fun onError(resId: Int) = onError(getString(resId))
-
-    override fun onError(message: String?) =
-            message?.let { showSnackbar(it) } ?: showSnackbar(getString(R.string.error_basic))
 
     override fun showMessage(resId: Int) = showMessage(getString(resId))
 
@@ -60,12 +59,6 @@ abstract class BaseActivity : MvpView, BaseFragment.Callback,
 
     override fun isNetworkConnected() = NetworkUtils.isNetworkConnected(applicationContext)
 
-    override fun onFragmentAttached() {
-    }
-
-    override fun onFragmentDetached(tag: String) {
-    }
-
     override fun hideKeyboard() {
         val view = currentFocus
         view?.let {
@@ -73,10 +66,4 @@ abstract class BaseActivity : MvpView, BaseFragment.Callback,
             imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
-    protected abstract fun setUp()
 }

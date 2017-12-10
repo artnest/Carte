@@ -1,11 +1,11 @@
 package by.carte.restaurants.ui.cities
 
-import by.carte.restaurants.data.model.api.CitiesResponse
+import by.carte.restaurants.data.remote.model.CityDataItem
 import by.carte.restaurants.ui.base.MvpView
 
 interface CitiesMvpView: MvpView {
 
-    fun updateCities(citiesList: List<CitiesResponse>)
+    fun setData(citiesList: List<CityDataItem>)
 
-    fun openRestaurantsActivity(cityId: String)
+    fun openRestaurantsActivity(cityId: Int)
 }

@@ -7,22 +7,22 @@ import com.androidnetworking.error.ANError
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 
-class CitiesPresenter<V : CitiesMvpView>(
+class RegionsPresenter<V : RegionsMvpView>(
         override val dataManager: DataManager,
         override val schedulerProvider: SchedulerProvider
-) : CitiesMvpPresenter<V>, BasePresenter<V>(dataManager, schedulerProvider) {
+        ) : RegionsMvpPresenter<V>, BasePresenter<V>(dataManager, schedulerProvider) {
 
     private var subscription: Disposable? = null
 
-    override fun loadCities() {
+    override fun loadRegions() {
         mvpView?.showLoading()
         subscription = dataManager
-                .getCitiesApiCall()
+                .getRegionsApiCall()
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
                 .subscribeBy(
-                        onNext = { citiesResponse ->
-                            mvpView?.setData(citiesResponse.data)
+                        onNext = { regionsResponse ->
+                            mvpView?.setData(regionsResponse.data)
                             mvpView?.showContent()
                         },
                         onError = { error ->
@@ -35,10 +35,11 @@ class CitiesPresenter<V : CitiesMvpView>(
         super.onDetach()
 
         subscription?.let {
-            if (it.isDisposed) it.dispose()
+            if (!it.isDisposed) it.dispose()
         }
     }
 
-    override fun openRestaurantsActivity(cityId: Int) =
-            mvpView!!.openRestaurantsActivity(cityId)
+    override fun openCitiesFragment(regionId: Int) {
+        mvpView!!.openCitiesFragment(regionId)
+    }
 }

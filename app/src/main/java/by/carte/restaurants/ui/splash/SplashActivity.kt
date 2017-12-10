@@ -1,6 +1,5 @@
 package by.carte.restaurants.ui.splash
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import by.carte.restaurants.R
@@ -12,7 +11,8 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurants)
 
-        startActivity(Intent(this@SplashActivity, CitiesActivity::class.java))
+        val intent = CitiesActivity.getStartIntent(this)
+        startActivity(intent)
         finish()
     }
 }

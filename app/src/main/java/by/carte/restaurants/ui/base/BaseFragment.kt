@@ -1,6 +1,5 @@
 package by.carte.restaurants.ui.base
 
-import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -11,7 +10,14 @@ abstract class BaseFragment : MvpView, Fragment() {
     var activity: BaseActivity? = null
         private set
 
-    private lateinit var progressDialog: ProgressDialog
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        if (context is BaseActivity) {
+            activity = context
+            activity!!.onFragmentAttached()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,33 +28,29 @@ abstract class BaseFragment : MvpView, Fragment() {
         setUp(view)
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
+    protected abstract fun setUp(view: View)
 
-        if (context is BaseActivity) {
-            activity = context
-            activity!!.onFragmentAttached()
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
+    override fun onDetach() {
+        activity = null
+        super.onDetach()
     }
 
     override fun showLoading() {
-        hideLoading()
-        // TODO: show loading dialog
     }
 
-    override fun hideLoading() {
-        // TODO: hide loading dialog
-        /*if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.cancel();
-        }*/
+    override fun showContent() {
     }
 
-    override fun onError(resId: Int) {
-        activity?.onError(resId)
+    override fun showError(resId: Int) {
+        activity?.showError(resId)
     }
 
-    override fun onError(message: String?) {
-        activity?.onError(message)
+    override fun showError(message: String?) {
+        activity?.showError(message)
     }
 
     override fun showMessage(resId: Int) {
@@ -61,19 +63,8 @@ abstract class BaseFragment : MvpView, Fragment() {
 
     override fun isNetworkConnected() = activity?.isNetworkConnected() ?: false
 
-    override fun onDetach() {
-        activity = null
-        super.onDetach()
-    }
-
     override fun hideKeyboard() {
         activity?.hideKeyboard()
-    }
-
-    protected abstract fun setUp(view: View)
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 
     interface Callback {

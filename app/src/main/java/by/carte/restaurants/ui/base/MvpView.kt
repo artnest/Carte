@@ -6,11 +6,11 @@ interface MvpView {
 
     fun showLoading()
 
-    fun hideLoading()
+    fun showContent()
 
-    fun onError(@StringRes resId: Int)
+    fun showError(@StringRes resId: Int)
 
-    fun onError(message: String?)
+    fun showError(message: String?)
 
     fun showMessage(@StringRes resId: Int)
 

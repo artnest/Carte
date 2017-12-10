@@ -52,8 +52,7 @@ ext {
     rxFastAndroidNetworking = '1.0.0'
 
     // Architecture Components dependencies
-    roomVersion = '1.0.0'
-    archLifecycleVersion = '1.0.0'
+    // roomVersion = '1.0.0'
 
     junitVersion = '4.12'
     espressoVersion = '2.2.2'

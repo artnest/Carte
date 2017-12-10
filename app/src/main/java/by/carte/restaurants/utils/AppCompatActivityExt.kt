@@ -21,9 +21,11 @@ const val EDIT_RESULT_OK = Activity.RESULT_FIRST_USER + 3
  * The `fragment` is added to the container view with id `frameId`. The operation is
  * performed by the `fragmentManager`.
  */
-fun AppCompatActivity.replaceFragmentInActivity(fragment: Fragment, frameId: Int) {
+fun AppCompatActivity.replaceFragmentInActivity(fragment: Fragment, frameId: Int,
+                                                addToBackStack: Boolean = false) {
     supportFragmentManager.transact {
         replace(frameId, fragment)
+        if (addToBackStack) addToBackStack(null)
     }
 }
 

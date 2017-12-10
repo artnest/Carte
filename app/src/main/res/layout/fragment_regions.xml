@@ -7,14 +7,26 @@
 
     <include layout="@layout/partial_loading_view" />
 
+    <TextView
+        android:id="@+id/text_choose_region"
+        style="@style/Base.TextAppearance.AppCompat.Display1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/regions_choose_region"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_restaurants"
+        android:id="@+id/recycler_regions"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_restaurant" />
+        app:layout_constraintTop_toBottomOf="@+id/text_choose_region"
+        tools:listitem="@layout/item_region" />
 
 </android.support.constraint.ConstraintLayout>
