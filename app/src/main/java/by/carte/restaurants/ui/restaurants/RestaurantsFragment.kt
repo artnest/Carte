@@ -12,6 +12,8 @@ import by.carte.restaurants.ui.base.BaseFragment
 import by.carte.restaurants.ui.restaurantdetails.RestaurantDetailsActivity
 import by.carte.restaurants.utils.rx.AppSchedulerProvider
 import kotlinx.android.synthetic.main.fragment_restaurants.*
+import kotlinx.android.synthetic.main.partial_error_view.*
+import kotlinx.android.synthetic.main.partial_error_view.view.*
 import kotlinx.android.synthetic.main.partial_loading_view.*
 
 class RestaurantsFragment : RestaurantsMvpView, RestaurantsAdapter.Callback,
@@ -54,7 +56,8 @@ class RestaurantsFragment : RestaurantsMvpView, RestaurantsAdapter.Callback,
 
     override fun showLoading() {
         recycler_restaurants.visibility = View.INVISIBLE
-        progress_loading.visibility = View.VISIBLE
+        loading_view.visibility = View.VISIBLE
+        error_view.visibility = View.GONE
     }
 
     override fun setData(restaurantsList: List<String>) {
@@ -64,7 +67,16 @@ class RestaurantsFragment : RestaurantsMvpView, RestaurantsAdapter.Callback,
 
     override fun showContent() {
         recycler_restaurants.visibility = View.VISIBLE
-        progress_loading.visibility = View.GONE
+        loading_view.visibility = View.GONE
+        error_view.visibility = View.GONE
+    }
+
+    override fun showError(message: String?) {
+        recycler_restaurants.visibility = View.INVISIBLE
+        loading_view.visibility = View.GONE
+        error_view.visibility = View.VISIBLE
+        error_view.text_retry.setOnClickListener { presenter.loadRestaurants() }
+        super.showError(message)
     }
 
     override fun onDestroyView() {

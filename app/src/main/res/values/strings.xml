@@ -1,10 +1,11 @@
 <resources>
-    <string name="app_name">Carte - Belarusian Restaurants &amp; Cafes</string>
+    <string name="app_name">Carte - Рестораны и кафе</string>
     <string name="app_name_short">Carte</string>
 
-    <string name="action_search_city">Search city</string>
-    <string name="action_search_restaurant">Search restaurant</string>
-    <string name="action_open_settings">Settings</string>
+    <string name="action_search_city">Поиск города</string>
+    <string name="action_search_restaurant">Поиск ресторана</string>
+    <string name="action_open_settings">Настройки</string>
+    <string name="action_retry">Нажмите здесь, чтобы повторить попытку</string>
 
     <string name="regions_choose_region">Выберите область</string>
 
@@ -26,5 +27,7 @@
     <string name="dish_price">%1$f р.</string>
     <string name="dish_weight">%1$s г</string>
 
-    <string name="error_basic">Нет соединения, повторите попытку позже</string>
+    <string name="error_api_default">Что-то пошло не так!</string>
+    <string name="error_api_retry">Повторите попытку позже!</string>
+    <string name="error_no_connection">Нет интернет-соединения!</string>
 </resources>

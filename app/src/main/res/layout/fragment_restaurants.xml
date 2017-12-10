@@ -7,6 +7,8 @@
 
     <include layout="@layout/partial_loading_view" />
 
+    <include layout="@layout/partial_error_view" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_restaurants"
         android:layout_width="0dp"

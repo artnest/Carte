@@ -1,8 +1,10 @@
 package by.carte.restaurants.ui.base
 
-import android.util.Log
+import by.carte.restaurants.R
 import by.carte.restaurants.data.DataManager
+import by.carte.restaurants.utils.API_STATUS_CODE_LOCAL_ERROR
 import by.carte.restaurants.utils.rx.SchedulerProvider
+import com.androidnetworking.common.ANConstants
 import com.androidnetworking.error.ANError
 
 open class BasePresenter<V : MvpView>(
@@ -22,9 +24,19 @@ open class BasePresenter<V : MvpView>(
     }
 
     override fun handleApiError(error: ANError) {
-        // TODO: handle api error
-        Log.d("API_ERROR", "error_code")
-        mvpView?.showError(error.message)
+        if (error.errorCode == API_STATUS_CODE_LOCAL_ERROR
+                && error.errorDetail == ANConstants.CONNECTION_ERROR) {
+            mvpView?.showError(R.string.error_no_connection)
+            return
+        }
+
+        if (error.errorCode == API_STATUS_CODE_LOCAL_ERROR
+                && error.errorDetail == ANConstants.REQUEST_CANCELLED_ERROR) {
+            mvpView?.showError(R.string.error_api_retry)
+            return
+        }
+
+        mvpView?.showError(R.string.error_api_default)
     }
 
     class MvpViewNotAttachedException() : RuntimeException(

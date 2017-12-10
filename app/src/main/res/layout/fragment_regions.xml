@@ -7,6 +7,8 @@
 
     <include layout="@layout/partial_loading_view" />
 
+    <include layout="@layout/partial_error_view" />
+
     <TextView
         android:id="@+id/text_choose_region"
         style="@style/Base.TextAppearance.AppCompat.Display1"

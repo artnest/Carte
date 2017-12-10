@@ -1,12 +1,14 @@
 package by.carte.restaurants.ui.cities
 
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.RecyclerView.ViewHolder
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import by.carte.restaurants.R
 import by.carte.restaurants.data.remote.model.RegionDataItem
 import by.carte.restaurants.utils.inflate
+import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.item_region.*
 
 class RegionsAdapter(private val regionsList: MutableList<RegionDataItem>) :
         RecyclerView.Adapter<RegionsAdapter.RegionViewHolder>() {
@@ -26,12 +28,13 @@ class RegionsAdapter(private val regionsList: MutableList<RegionDataItem>) :
         regionsList.addAll(regionItemList)
     }
 
-    class RegionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class RegionViewHolder(override val containerView: View) : ViewHolder(containerView),
+            LayoutContainer {
 
         fun bind(item: RegionDataItem, callback: Callback?) {
-            itemView.findViewById<TextView>(R.id.text_title).text = item.name
+            text_title.text = item.name
 
-            itemView.setOnClickListener { callback?.onItemClicked(item) }
+            containerView.setOnClickListener { callback?.onItemClicked(item) }
         }
     }
 

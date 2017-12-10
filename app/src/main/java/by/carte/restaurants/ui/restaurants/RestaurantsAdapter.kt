@@ -1,11 +1,13 @@
 package by.carte.restaurants.ui.restaurants
 
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.RecyclerView.ViewHolder
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import by.carte.restaurants.R
 import by.carte.restaurants.utils.inflate
+import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.item_restaurant.*
 
 class RestaurantsAdapter(private val restaurantsList: MutableList<String>) :
         RecyclerView.Adapter<RestaurantsAdapter.RestaurantViewHolder>() {
@@ -25,12 +27,13 @@ class RestaurantsAdapter(private val restaurantsList: MutableList<String>) :
         restaurantsList.addAll(restaurantItemList)
     }
 
-    class RestaurantViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class RestaurantViewHolder(override val containerView: View) : ViewHolder(containerView),
+            LayoutContainer {
 
         fun bind(item: String, callback: Callback?) {
-            itemView.findViewById<TextView>(R.id.text_title).text = item
+            text_name.text = item
 
-            itemView.setOnClickListener { callback?.onItemClicked(item) }
+            containerView.setOnClickListener { callback?.onItemClicked(item) }
         }
     }
 

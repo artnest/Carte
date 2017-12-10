@@ -13,6 +13,8 @@ import by.carte.restaurants.ui.base.BaseFragment
 import by.carte.restaurants.ui.restaurants.RestaurantsActivity
 import by.carte.restaurants.utils.rx.AppSchedulerProvider
 import kotlinx.android.synthetic.main.fragment_cities.*
+import kotlinx.android.synthetic.main.partial_error_view.*
+import kotlinx.android.synthetic.main.partial_error_view.view.*
 import kotlinx.android.synthetic.main.partial_loading_view.*
 
 private const val ARGUMENT_REGION_ID = "ARGUMENT_REGION_ID"
@@ -64,7 +66,8 @@ class CitiesFragment : CitiesMvpView, CitiesAdapter.Callback,
     override fun showLoading() {
         text_choose_city.visibility = View.INVISIBLE
         recycler_cities.visibility = View.INVISIBLE
-        progress_loading.visibility = View.VISIBLE
+        loading_view.visibility = View.VISIBLE
+        error_view.visibility = View.GONE
     }
 
     override fun setData(citiesList: List<CityDataItem>) {
@@ -75,7 +78,17 @@ class CitiesFragment : CitiesMvpView, CitiesAdapter.Callback,
     override fun showContent() {
         text_choose_city.visibility = View.VISIBLE
         recycler_cities.visibility = View.VISIBLE
-        progress_loading.visibility = View.GONE
+        loading_view.visibility = View.GONE
+        error_view.visibility = View.GONE
+    }
+
+    override fun showError(message: String?) {
+        text_choose_city.visibility = View.INVISIBLE
+        recycler_cities.visibility = View.INVISIBLE
+        loading_view.visibility = View.GONE
+        error_view.visibility = View.VISIBLE
+        error_view.text_retry.setOnClickListener { presenter.loadCities() }
+        super.showError(message)
     }
 
     override fun onDestroyView() {

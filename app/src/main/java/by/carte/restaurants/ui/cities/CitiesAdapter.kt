@@ -1,12 +1,14 @@
 package by.carte.restaurants.ui.cities
 
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.RecyclerView.ViewHolder
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import by.carte.restaurants.R
 import by.carte.restaurants.data.remote.model.CityDataItem
 import by.carte.restaurants.utils.inflate
+import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.item_city.*
 
 class CitiesAdapter(private val citiesList: MutableList<CityDataItem>) :
         RecyclerView.Adapter<CitiesAdapter.CityViewHolder>() {
@@ -26,12 +28,17 @@ class CitiesAdapter(private val citiesList: MutableList<CityDataItem>) :
         citiesList.addAll(cityItemList)
     }
 
-    class CityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class CityViewHolder(override val containerView: View) : ViewHolder(containerView),
+            LayoutContainer {
 
         fun bind(item: CityDataItem, callback: Callback?) {
-            itemView.findViewById<TextView>(R.id.text_title).text = item.name
+            text_title.text = item.name
 
-            itemView.setOnClickListener { callback?.onItemClicked(item) }
+            if (item.active) {
+                containerView.setOnClickListener { callback?.onItemClicked(item) }
+            } else {
+                text_title.isEnabled = false
+            }
         }
     }
 

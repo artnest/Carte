@@ -45,17 +45,13 @@ abstract class BaseFragment : MvpView, Fragment() {
     override fun showContent() {
     }
 
-    override fun showError(resId: Int) {
-        activity?.showError(resId)
-    }
+    override fun showError(resId: Int) = showError(getString(resId))
 
     override fun showError(message: String?) {
         activity?.showError(message)
     }
 
-    override fun showMessage(resId: Int) {
-        activity?.showMessage(resId)
-    }
+    override fun showMessage(resId: Int) = showMessage(getString(resId))
 
     override fun showMessage(message: String?) {
         activity?.showMessage(message)

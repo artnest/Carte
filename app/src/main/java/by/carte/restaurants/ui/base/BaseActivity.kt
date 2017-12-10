@@ -41,7 +41,7 @@ abstract class BaseActivity : MvpView, BaseFragment.Callback,
     override fun showError(resId: Int) = showError(getString(resId))
 
     override fun showError(message: String?) =
-            message?.let { showSnackbar(it) } ?: showSnackbar(getString(R.string.error_basic))
+            message?.let { showSnackbar(it) } ?: showSnackbar(getString(R.string.error_api_default))
 
     private fun showSnackbar(message: String) {
         val snackbar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT)
@@ -54,7 +54,7 @@ abstract class BaseActivity : MvpView, BaseFragment.Callback,
 
     override fun showMessage(message: String?) =
             message?.let { Toast.makeText(this, message, Toast.LENGTH_SHORT).show() } ?:
-                    Toast.makeText(this, getString(R.string.error_basic), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.error_api_default), Toast.LENGTH_SHORT).show()
     // TODO: use toast() from Anko or implement by myself
 
     override fun isNetworkConnected() = NetworkUtils.isNetworkConnected(applicationContext)
