@@ -4,6 +4,7 @@ import android.content.Context
 import by.carte.restaurants.data.remote.ApiHelper
 import by.carte.restaurants.data.remote.model.CitiesResponse
 import by.carte.restaurants.data.remote.model.RegionsResponse
+import by.carte.restaurants.data.remote.model.RestaurantsResponse
 import io.reactivex.Observable
 
 class AppDataManager(private val context: Context,
@@ -12,12 +13,11 @@ class AppDataManager(private val context: Context,
     override fun getRegionsApiCall(): Observable<RegionsResponse> =
             apiHelper.getRegionsApiCall()
 
-    override fun getCitiesApiCall(): Observable<CitiesResponse> =
-            apiHelper.getCitiesApiCall()
+    override fun getCitiesApiCall(regionId: String): Observable<CitiesResponse> =
+            apiHelper.getCitiesApiCall(regionId)
 
-    override fun getRestaurantsForCityApiCall(): Observable<CitiesResponse> {
-        TODO("not implemented")
-    }
+    override fun getRestaurantsApiCall(regionId: String, cityId: String): Observable<RestaurantsResponse> =
+            apiHelper.getRestaurantsApiCall(regionId, cityId)
 
     override fun getRestaurantInfoApiCall(): Observable<CitiesResponse> {
         TODO("not implemented")

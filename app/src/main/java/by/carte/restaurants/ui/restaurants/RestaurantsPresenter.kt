@@ -1,6 +1,7 @@
 package by.carte.restaurants.ui.restaurants
 
 import by.carte.restaurants.data.DataManager
+import by.carte.restaurants.data.remote.model.RestaurantDataItem
 import by.carte.restaurants.ui.base.BasePresenter
 import by.carte.restaurants.utils.rx.SchedulerProvider
 import com.androidnetworking.error.ANError
@@ -14,16 +15,15 @@ class RestaurantsPresenter<V : RestaurantsMvpView>(
 
     private var subscription: Disposable? = null
 
-    override fun loadRestaurants() {
+    override fun loadRestaurants(regionId: String, cityId: String) {
         mvpView?.showLoading()
         subscription = dataManager
-                .getCitiesApiCall()
+                .getRestaurantsApiCall(regionId, cityId)
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
                 .subscribeBy(
-                        onNext = { citiesResponse ->
-                            // TODO: it.data
-                            mvpView?.setData(listOf())
+                        onNext = { restaurantsResponse ->
+                            mvpView?.setData(restaurantsResponse.data)
                             mvpView?.showContent()
                         },
                         onError = { error ->
@@ -40,6 +40,6 @@ class RestaurantsPresenter<V : RestaurantsMvpView>(
         }
     }
 
-    override fun openRestaurantDetailsActivity(restaurantId: String) =
-            mvpView!!.openRestaurantDetailsActivity(restaurantId)
+    override fun openRestaurantDetailsActivity(restaurantItem: RestaurantDataItem) =
+            mvpView!!.openRestaurantDetailsActivity(restaurantItem)
 }

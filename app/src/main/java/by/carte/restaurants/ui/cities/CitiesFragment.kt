@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import by.carte.restaurants.CarteApp
 import by.carte.restaurants.R
 import by.carte.restaurants.data.remote.model.CityDataItem
+import by.carte.restaurants.data.remote.model.RegionDataItem
 import by.carte.restaurants.ui.base.BaseFragment
 import by.carte.restaurants.ui.restaurants.RestaurantsActivity
 import by.carte.restaurants.utils.rx.AppSchedulerProvider
@@ -17,14 +18,14 @@ import kotlinx.android.synthetic.main.partial_error_view.*
 import kotlinx.android.synthetic.main.partial_error_view.view.*
 import kotlinx.android.synthetic.main.partial_loading_view.*
 
-private const val ARGUMENT_REGION_ID = "ARGUMENT_REGION_ID"
+private const val ARGUMENT_REGION = "ARGUMENT_REGION"
 
 class CitiesFragment : CitiesMvpView, CitiesAdapter.Callback,
         BaseFragment() {
 
     lateinit var presenter: CitiesMvpPresenter<CitiesMvpView>
 
-    private var regionId: Int = 0
+    private lateinit var regionItem: RegionDataItem
 
     private lateinit var citiesAdapter: CitiesAdapter
     private lateinit var layoutManager: LinearLayoutManager
@@ -33,7 +34,7 @@ class CitiesFragment : CitiesMvpView, CitiesAdapter.Callback,
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            regionId = it.getInt(ARGUMENT_REGION_ID)
+            regionItem = it.getParcelable(ARGUMENT_REGION)
         }
 
         presenter = CitiesPresenter(CarteApp.dataManager, AppSchedulerProvider)
@@ -53,7 +54,7 @@ class CitiesFragment : CitiesMvpView, CitiesAdapter.Callback,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter.loadCities()
+        presenter.loadCities(regionItem.id.toString())
     }
 
     override fun setUp(view: View) {
@@ -87,7 +88,9 @@ class CitiesFragment : CitiesMvpView, CitiesAdapter.Callback,
         recycler_cities.visibility = View.INVISIBLE
         loading_view.visibility = View.GONE
         error_view.visibility = View.VISIBLE
-        error_view.text_retry.setOnClickListener { presenter.loadCities() }
+        error_view.text_retry.setOnClickListener {
+            presenter.loadCities(regionItem.id.toString())
+        }
         super.showError(message)
     }
 
@@ -96,20 +99,20 @@ class CitiesFragment : CitiesMvpView, CitiesAdapter.Callback,
         super.onDestroyView()
     }
 
-    override fun openRestaurantsActivity(cityId: Int) {
-        val intent = RestaurantsActivity.getStartIntent(activity!!, cityId)
+    override fun openRestaurantsActivity(cityItem: CityDataItem) {
+        val intent = RestaurantsActivity.getStartIntent(activity!!, cityItem)
         startActivity(intent)
         activity!!.finish()
     }
 
     override fun onItemClicked(item: CityDataItem) {
-        presenter.openRestaurantsActivity(item.id)
+        presenter.openRestaurantsActivity(item)
     }
 
     companion object {
-        fun newInstance(regionId: Int): CitiesFragment = CitiesFragment().apply {
+        fun newInstance(regionItem: RegionDataItem): CitiesFragment = CitiesFragment().apply {
             arguments = Bundle().apply {
-                putInt(ARGUMENT_REGION_ID, regionId)
+                putParcelable(ARGUMENT_REGION, regionItem)
             }
         }
     }

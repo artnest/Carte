@@ -1,6 +1,7 @@
 package by.carte.restaurants.ui.cities
 
 import by.carte.restaurants.data.DataManager
+import by.carte.restaurants.data.remote.model.RegionDataItem
 import by.carte.restaurants.ui.base.BasePresenter
 import by.carte.restaurants.utils.rx.SchedulerProvider
 import com.androidnetworking.error.ANError
@@ -39,7 +40,7 @@ class RegionsPresenter<V : RegionsMvpView>(
         }
     }
 
-    override fun openCitiesFragment(regionId: Int) {
-        mvpView!!.openCitiesFragment(regionId)
+    override fun openCitiesFragment(regionItem: RegionDataItem) {
+        mvpView!!.openCitiesFragment(regionItem)
     }
 }

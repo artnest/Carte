@@ -7,5 +7,5 @@ interface RegionsMvpView : MvpView {
 
     fun setData(regionsList: List<RegionDataItem>)
 
-    fun openCitiesFragment(regionId: Int)
+    fun openCitiesFragment(regionItem: RegionDataItem)
 }

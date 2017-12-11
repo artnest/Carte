@@ -1,7 +1,10 @@
 package by.carte.restaurants.data.remote.model
 
+import android.annotation.SuppressLint
 import com.google.gson.annotations.SerializedName
+import io.mironov.smuggler.AutoParcelable
 
+@SuppressLint("ParcelCreator")
 data class CityDataItem(
         @SerializedName("name")
         val name: String,
@@ -11,4 +14,4 @@ data class CityDataItem(
         val active: Boolean,
         @SerializedName("id")
         val id: Int
-)
+) : AutoParcelable

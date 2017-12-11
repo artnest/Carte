@@ -7,5 +7,5 @@ interface CitiesMvpView: MvpView {
 
     fun setData(citiesList: List<CityDataItem>)
 
-    fun openRestaurantsActivity(cityId: Int)
+    fun openRestaurantsActivity(cityItem: CityDataItem)
 }
