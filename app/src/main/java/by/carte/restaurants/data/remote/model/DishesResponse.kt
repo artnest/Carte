@@ -2,7 +2,7 @@ package by.carte.restaurants.data.remote.model
 
 import com.google.gson.annotations.SerializedName
 
-data class CitiesResponse(
+data class DishesResponse(
         @SerializedName("data")
-        val data: List<CityDataItem>
+        val data: List<DishDataItem> = arrayListOf()
 )

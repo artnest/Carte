@@ -32,12 +32,12 @@ class CitiesAdapter(private val citiesList: MutableList<CityDataItem>) :
             LayoutContainer {
 
         fun bind(item: CityDataItem, callback: Callback?) {
-            text_title.text = item.name
+            text_city_name.text = item.name
 
             if (item.active) {
                 containerView.setOnClickListener { callback?.onItemClicked(item) }
             } else {
-                text_title.isEnabled = false
+                text_city_name.isEnabled = false
             }
         }
     }

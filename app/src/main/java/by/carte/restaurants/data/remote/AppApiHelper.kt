@@ -1,36 +1,36 @@
 package by.carte.restaurants.data.remote
 
+import by.carte.restaurants.data.remote.model.CategoriesResponse
 import by.carte.restaurants.data.remote.model.CitiesResponse
 import by.carte.restaurants.data.remote.model.RegionsResponse
 import by.carte.restaurants.data.remote.model.RestaurantsResponse
 import com.rx2androidnetworking.Rx2AndroidNetworking
-import io.reactivex.Observable
 
 object AppApiHelper : ApiHelper {
 
-    override fun getRegionsApiCall(): Observable<RegionsResponse> =
+    override fun getRegionsApiCall() =
             Rx2AndroidNetworking.get(ENDPOINT_REGIONS)
                     .build()
-                    .getObjectObservable(RegionsResponse::class.java)
+                    .getObjectObservable(RegionsResponse::class.java)!!
 
-    override fun getCitiesApiCall(regionId: String): Observable<CitiesResponse> =
+    override fun getCitiesApiCall(regionId: String) =
             Rx2AndroidNetworking.get(ENDPOINT_CITIES)
                     //.addPathParameter("region_id", regionId)
                     .build()
-                    .getObjectObservable(CitiesResponse::class.java)
+                    .getObjectObservable(CitiesResponse::class.java)!!
 
-    override fun getRestaurantsApiCall(regionId: String, cityId: String): Observable<RestaurantsResponse> =
+    override fun getRestaurantsApiCall(regionId: String, cityId: String) =
             Rx2AndroidNetworking.get(ENDPOINT_RESTAURANTS)
                     //.addPathParameter("region_id", regionId)
                     //.addPathParameter("city_id", cityId)
                     .build()
-                    .getObjectObservable(RestaurantsResponse::class.java)
+                    .getObjectObservable(RestaurantsResponse::class.java)!!
 
-    override fun getRestaurantInfoApiCall(): Observable<CitiesResponse> {
-        TODO("not implemented")
-    }
-
-    override fun getPhotoForRestaurantApiCall(): Observable<CitiesResponse> {
-        TODO("not implemented")
-    }
+    override fun getCategoriesApiCall(regionId: String, cityId: String, restaurantId: String) =
+            Rx2AndroidNetworking.get(ENDPOINT_CATEGORIES)
+                    //.addPathParameter("region_id", regionId)
+                    //.addPathParameter("city_id", cityId)
+                    //.addPathParameter("restaurant_id", restaurantId)
+                    .build()
+                    .getObjectObservable(CategoriesResponse::class.java)!!
 }

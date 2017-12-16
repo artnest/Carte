@@ -9,7 +9,7 @@ import by.carte.restaurants.ui.base.BaseActivity
 import by.carte.restaurants.utils.replaceFragmentInActivity
 import kotlinx.android.synthetic.main.partial_toolbar.*
 
-private const val EXTRA_CITY = "EXTRA_CITY"
+private const val EXTRA_CITY = "EXTRA_RESTAURANT"
 
 class RestaurantsActivity : BaseActivity() {
 

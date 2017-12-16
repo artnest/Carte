@@ -32,7 +32,7 @@ class RegionsAdapter(private val regionsList: MutableList<RegionDataItem>) :
             LayoutContainer {
 
         fun bind(item: RegionDataItem, callback: Callback?) {
-            text_title.text = item.name
+            text_region_name.text = item.name
 
             containerView.setOnClickListener { callback?.onItemClicked(item) }
         }

@@ -4,16 +4,28 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import by.carte.restaurants.R
+import by.carte.restaurants.data.remote.model.CityDataItem
+import by.carte.restaurants.data.remote.model.RestaurantDataItem
 import by.carte.restaurants.ui.base.BaseActivity
+import by.carte.restaurants.utils.replaceFragmentInActivity
 import kotlinx.android.synthetic.main.partial_toolbar.*
 
-private const val EXTRA_RESTAURANT_ID = "EXTRA_RESTAURANT_ID"
+private const val EXTRA_CITY = "EXTRA_CITY"
+private const val EXTRA_RESTAURANT = "EXTRA_RESTAURANT"
 
 class RestaurantDetailsActivity : BaseActivity() {
 
+    private lateinit var cityItem: CityDataItem
+    private lateinit var restaurantItem: RestaurantDataItem
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_restaurant_details)
+        setContentView(R.layout.activity_restaurants)
+
+        intent?.let {
+            cityItem = it.getParcelableExtra(EXTRA_CITY)
+            restaurantItem = it.getParcelableExtra(EXTRA_RESTAURANT)
+        }
 
         setUp()
     }
@@ -36,10 +48,10 @@ class RestaurantDetailsActivity : BaseActivity() {
     }
 
     private fun setupViewFragment() {
-        /*supportFragmentManager.findFragmentById(R.id.frame_container) ?:
-                RestaurantDetailsFragment.newInstance().let {
+        supportFragmentManager.findFragmentById(R.id.frame_container) ?:
+                RestaurantDetailsFragment.newInstance(cityItem, restaurantItem).let {
                     replaceFragmentInActivity(it, R.id.frame_container)
-                }*/
+                }
     }
 
     override fun onDestroy() {
@@ -52,8 +64,9 @@ class RestaurantDetailsActivity : BaseActivity() {
     }
 
     companion object {
-        fun getStartIntent(context: Context, restaurantId: String) =
+        fun getStartIntent(context: Context, cityItem: CityDataItem, restaurantItem: RestaurantDataItem) =
                 Intent(context, RestaurantDetailsActivity::class.java)
-                        .putExtra(EXTRA_RESTAURANT_ID, restaurantId)!!
+                        .putExtra(EXTRA_CITY, cityItem)!!
+                        .putExtra(EXTRA_RESTAURANT, restaurantItem)!!
     }
 }

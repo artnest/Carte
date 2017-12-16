@@ -11,6 +11,7 @@ import by.carte.restaurants.R
 import by.carte.restaurants.data.remote.model.CityDataItem
 import by.carte.restaurants.data.remote.model.RestaurantDataItem
 import by.carte.restaurants.ui.base.BaseFragment
+import by.carte.restaurants.ui.restaurantdetails.RestaurantDetailsActivity
 import by.carte.restaurants.utils.rx.AppSchedulerProvider
 import kotlinx.android.synthetic.main.fragment_restaurants.*
 import kotlinx.android.synthetic.main.partial_error_view.*
@@ -95,17 +96,16 @@ class RestaurantsFragment : RestaurantsMvpView, RestaurantsAdapter.Callback,
         super.onDestroyView()
     }
 
-    override fun openRestaurantDetailsActivity(restaurantItem: RestaurantDataItem) {
-        // val intent = RestaurantDetailsActivity.getStartIntent(activity!!, restaurantItem)
-        // startActivity(intent)
-        // activity!!.finish()
+    override fun onDetailsButtonClicked(restaurantItem: RestaurantDataItem) {
+        presenter.openRestaurantDetailsActivity(cityItem, restaurantItem)
     }
 
-    override fun onDetailsButtonClicked(item: RestaurantDataItem) {
-        presenter.openRestaurantDetailsActivity(item)
+    override fun openRestaurantDetailsActivity(cityItem: CityDataItem, restaurantItem: RestaurantDataItem) {
+        val intent = RestaurantDetailsActivity.getStartIntent(activity!!, cityItem, restaurantItem)
+        startActivity(intent)
     }
 
-    override fun onMapButtonClicked(item: RestaurantDataItem) {
+    override fun onMapButtonClicked(restaurantItem: RestaurantDataItem) {
         // TODO: implement
     }
 

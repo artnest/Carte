@@ -11,7 +11,7 @@ data class RestaurantDataItem(
         @SerializedName("bookable")
         val bookable: Boolean,
         @SerializedName("images")
-        val images: String,
+        val images: List<String> = arrayListOf(),
         @SerializedName("address")
         val address: String,
         @SerializedName("phone")

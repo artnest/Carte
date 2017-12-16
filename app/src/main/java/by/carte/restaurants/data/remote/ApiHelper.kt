@@ -1,5 +1,6 @@
 package by.carte.restaurants.data.remote
 
+import by.carte.restaurants.data.remote.model.CategoriesResponse
 import by.carte.restaurants.data.remote.model.CitiesResponse
 import by.carte.restaurants.data.remote.model.RegionsResponse
 import by.carte.restaurants.data.remote.model.RestaurantsResponse
@@ -13,7 +14,5 @@ interface ApiHelper {
 
     fun getRestaurantsApiCall(regionId: String, cityId: String): Observable<RestaurantsResponse>
 
-    fun getRestaurantInfoApiCall(): Observable<CitiesResponse>
-
-    fun getPhotoForRestaurantApiCall(): Observable<CitiesResponse>
+    fun getCategoriesApiCall(regionId: String, cityId: String, restaurantId: String): Observable<CategoriesResponse>
 }

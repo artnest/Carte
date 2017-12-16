@@ -99,14 +99,14 @@ class CitiesFragment : CitiesMvpView, CitiesAdapter.Callback,
         super.onDestroyView()
     }
 
+    override fun onItemClicked(item: CityDataItem) {
+        presenter.openRestaurantsActivity(item)
+    }
+
     override fun openRestaurantsActivity(cityItem: CityDataItem) {
         val intent = RestaurantsActivity.getStartIntent(activity!!, cityItem)
         startActivity(intent)
         activity!!.finish()
-    }
-
-    override fun onItemClicked(item: CityDataItem) {
-        presenter.openRestaurantsActivity(item)
     }
 
     companion object {

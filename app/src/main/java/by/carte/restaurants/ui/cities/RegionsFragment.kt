@@ -88,13 +88,13 @@ class RegionsFragment : RegionsMvpView, RegionsAdapter.Callback,
         super.onDestroyView()
     }
 
+    override fun onItemClicked(item: RegionDataItem) {
+        presenter.openCitiesFragment(item)
+    }
+
     override fun openCitiesFragment(regionItem: RegionDataItem) {
         activity!!.replaceFragmentInActivity(CitiesFragment.newInstance(regionItem), R.id.frame_container,
                 true)
-    }
-
-    override fun onItemClicked(item: RegionDataItem) {
-        presenter.openCitiesFragment(item)
     }
 
     companion object {

@@ -1,30 +1,30 @@
-package by.carte.restaurants.ui.restaurants
+package by.carte.restaurants.ui.restaurantdetails
 
 import by.carte.restaurants.data.DataManager
+import by.carte.restaurants.data.remote.model.CategoryDataItem
 import by.carte.restaurants.data.remote.model.CityDataItem
-import by.carte.restaurants.data.remote.model.RestaurantDataItem
 import by.carte.restaurants.ui.base.BasePresenter
 import by.carte.restaurants.utils.rx.SchedulerProvider
 import com.androidnetworking.error.ANError
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 
-class RestaurantsPresenter<V : RestaurantsMvpView>(
+class RestaurantDetailsPresenter<V : RestaurantDetailsMvpView>(
         override val dataManager: DataManager,
         override val schedulerProvider: SchedulerProvider
-) : RestaurantsMvpPresenter<V>, BasePresenter<V>(dataManager, schedulerProvider) {
+) : RestaurantDetailsMvpPresenter<V>, BasePresenter<V>(dataManager, schedulerProvider) {
 
     private var subscription: Disposable? = null
 
-    override fun loadRestaurants(regionId: String, cityId: String) {
+    override fun loadCategories(regionId: String, cityId: String, restaurantId: String) {
         mvpView?.showLoading()
         subscription = dataManager
-                .getRestaurantsApiCall(regionId, cityId)
+                .getCategoriesApiCall(regionId, cityId, restaurantId)
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
                 .subscribeBy(
-                        onNext = { restaurantsResponse ->
-                            mvpView?.setData(restaurantsResponse.data)
+                        onNext = { categoriesResponse ->
+                            mvpView?.setData(categoriesResponse.data)
                             mvpView?.showContent()
                         },
                         onError = { error ->
@@ -41,6 +41,6 @@ class RestaurantsPresenter<V : RestaurantsMvpView>(
         }
     }
 
-    override fun openRestaurantDetailsActivity(cityItem: CityDataItem, restaurantItem: RestaurantDataItem) =
-            mvpView!!.openRestaurantDetailsActivity(cityItem, restaurantItem)
+    override fun showDishes(cityItem: CityDataItem, categoryItem: CategoryDataItem) =
+            mvpView!!.showDishes(cityItem, categoryItem)
 }

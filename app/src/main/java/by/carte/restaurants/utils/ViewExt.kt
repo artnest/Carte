@@ -13,4 +13,4 @@ fun ImageView.loadImage(imageUrl: String) = Glide.with(this.context)
         .load(imageUrl)
         .asBitmap()
         //.centerCrop()
-        .into(this)
+        .into(this)!!

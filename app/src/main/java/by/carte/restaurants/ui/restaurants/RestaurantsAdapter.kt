@@ -34,7 +34,7 @@ class RestaurantsAdapter(private val restaurantsList: MutableList<RestaurantData
 
         fun bind(item: RestaurantDataItem, callback: Callback?) {
             image_restaurant.loadImage(item.logo)
-            text_name.text = item.name
+            text_restaurant_name.text = item.name
             text_address.text = item.address
 
             button_show_more.setOnClickListener { callback?.onDetailsButtonClicked(item) }
@@ -44,8 +44,8 @@ class RestaurantsAdapter(private val restaurantsList: MutableList<RestaurantData
 
     interface Callback {
 
-        fun onDetailsButtonClicked(item: RestaurantDataItem)
+        fun onDetailsButtonClicked(restaurantItem: RestaurantDataItem)
 
-        fun onMapButtonClicked(item: RestaurantDataItem)
+        fun onMapButtonClicked(restaurantItem: RestaurantDataItem)
     }
 }
