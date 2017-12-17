@@ -22,8 +22,10 @@ data class RestaurantDataItem(
         val name: String,
         @SerializedName("logo")
         val logo: String,
-        @SerializedName("location")
-        val location: String,
+        @SerializedName("lat")
+        val lat: Double,
+        @SerializedName("lng")
+        val lng: Double,
         @SerializedName("id")
         val id: Int,
         @SerializedName("worktime")

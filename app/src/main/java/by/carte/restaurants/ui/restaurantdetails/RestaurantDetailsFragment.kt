@@ -135,10 +135,11 @@ class RestaurantDetailsFragment : RestaurantDetailsMvpView, CategoriesAdapter.Ca
     }
 
     override fun onItemClicked(categoryItem: CategoryDataItem) {
-        presenter.showDishes(cityItem, categoryItem)
+        presenter.showDishes(cityItem, restaurantItem, categoryItem)
     }
 
-    override fun showDishes(cityItem: CityDataItem, categoryItem: CategoryDataItem) {
+    override fun showDishes(cityItem: CityDataItem, restaurantItem: RestaurantDataItem,
+                            categoryItem: CategoryDataItem) {
         // TODO: show dialog fragment with dishes
     }
 
