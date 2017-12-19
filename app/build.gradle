@@ -69,6 +69,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxkotlin:$rootProject.rxKotlinVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
     implementation "com.amitshekhar.android:rx2-android-networking:$rootProject.rxFastAndroidNetworking"
+    implementation "com.mapbox.mapboxsdk:mapbox-android-sdk:$rootProject.mapboxVersion"
 
     // Architecture Components
     // implementation "android.arch.persistence.room:rxjava2:$rootProject.roomVersion"

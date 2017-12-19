@@ -3,6 +3,7 @@
     package="by.carte.restaurants">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".CarteApp"
@@ -34,6 +35,10 @@
 
         <activity
             android:name=".ui.restaurantdetails.RestaurantDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.restaurantmap.navigation.NavigationActivity"
             android:screenOrientation="portrait" />
     </application>
 
