@@ -15,4 +15,4 @@ const val ENDPOINT_RESTAURANTS = BuildConfig.BASE_URL + "/5a3585352f0000591ae252
 const val ENDPOINT_CATEGORIES = BuildConfig.BASE_URL + "/5a3565112f00007716e25224"
 
 // const val ENDPOINT_DISHES = BuildConfig.BASE_URL + "/regions/{region_id}/cities/{city_id}/restaurants/{restaurant_id}/categories/{category_id}/dishes"
-// const val ENDPOINT_DISHES = BuildConfig.BASE_URL + "/5a2e60232e0000cb15278d97" // TODO
+const val ENDPOINT_DISHES = BuildConfig.BASE_URL + "/5a3905b9370000ba0dfd2e61"

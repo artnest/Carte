@@ -11,14 +11,14 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_category.*
 
 class CategoriesAdapter(private val categoriesList: MutableList<CategoryDataItem>) :
-        RecyclerView.Adapter<CategoriesAdapter.RestaurantViewHolder>() {
+        RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
 
     var callback: Callback? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-            RestaurantViewHolder(parent.inflate(R.layout.item_category))
+            CategoryViewHolder(parent.inflate(R.layout.item_category))
 
-    override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) =
+    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) =
             holder.bind(categoriesList[position], callback)
 
     override fun getItemCount() = categoriesList.size
@@ -28,7 +28,7 @@ class CategoriesAdapter(private val categoriesList: MutableList<CategoryDataItem
         categoriesList.addAll(categoriesItemList)
     }
 
-    class RestaurantViewHolder(override val containerView: View) : ViewHolder(containerView),
+    class CategoryViewHolder(override val containerView: View) : ViewHolder(containerView),
             LayoutContainer {
 
         fun bind(item: CategoryDataItem, callback: Callback?) {

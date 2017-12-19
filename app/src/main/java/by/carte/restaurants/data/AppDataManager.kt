@@ -15,4 +15,7 @@ class AppDataManager(private val context: Context,
 
     override fun getCategoriesApiCall(regionId: String, cityId: String, restaurantId: String) =
             apiHelper.getCategoriesApiCall(regionId, cityId, restaurantId)
+
+    override fun getDishesApiCall(regionId: String, cityId: String, restaurantId: String, categoryId: String) =
+            apiHelper.getDishesApiCall(regionId, cityId, restaurantId, categoryId)
 }

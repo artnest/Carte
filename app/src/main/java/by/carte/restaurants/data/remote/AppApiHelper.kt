@@ -1,9 +1,6 @@
 package by.carte.restaurants.data.remote
 
-import by.carte.restaurants.data.remote.model.CategoriesResponse
-import by.carte.restaurants.data.remote.model.CitiesResponse
-import by.carte.restaurants.data.remote.model.RegionsResponse
-import by.carte.restaurants.data.remote.model.RestaurantsResponse
+import by.carte.restaurants.data.remote.model.*
 import com.rx2androidnetworking.Rx2AndroidNetworking
 
 object AppApiHelper : ApiHelper {
@@ -33,4 +30,16 @@ object AppApiHelper : ApiHelper {
                     //.addPathParameter("restaurant_id", restaurantId)
                     .build()
                     .getObjectObservable(CategoriesResponse::class.java)!!
+
+    override fun getDishesApiCall(regionId: String,
+                                  cityId: String,
+                                  restaurantId: String,
+                                  categoryId: String) =
+            Rx2AndroidNetworking.get(ENDPOINT_DISHES)
+                    //.addPathParameter("region_id", regionId)
+                    //.addPathParameter("city_id", cityId)
+                    //.addPathParameter("restaurant_id", restaurantId)
+                    //.addPathParameter("category_id", categoryId)
+                    .build()
+                    .getObjectObservable(DishesResponse::class.java)!!
 }

@@ -2,10 +2,10 @@ package by.carte.restaurants.ui.base
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import android.support.v4.app.DialogFragment
 import android.view.View
 
-abstract class BaseFragment : MvpView, Fragment() {
+abstract class BaseDialogFragment : MvpView, DialogFragment() {
 
     var activity: BaseActivity? = null
         private set

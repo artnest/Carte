@@ -1,31 +1,31 @@
-package by.carte.restaurants.ui.restaurantdetails
+package by.carte.restaurants.ui.dishes
 
 import by.carte.restaurants.data.DataManager
-import by.carte.restaurants.data.remote.model.CategoryDataItem
-import by.carte.restaurants.data.remote.model.CityDataItem
-import by.carte.restaurants.data.remote.model.RestaurantDataItem
 import by.carte.restaurants.ui.base.BasePresenter
 import by.carte.restaurants.utils.rx.SchedulerProvider
 import com.androidnetworking.error.ANError
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 
-class RestaurantDetailsPresenter<V : RestaurantDetailsMvpView>(
+class DishesPresenter<V : DishesMvpView>(
         override val dataManager: DataManager,
         override val schedulerProvider: SchedulerProvider
-) : RestaurantDetailsMvpPresenter<V>, BasePresenter<V>(dataManager, schedulerProvider) {
+) : DishesMvpPresenter<V>, BasePresenter<V>(dataManager, schedulerProvider) {
 
     private var subscription: Disposable? = null
 
-    override fun loadCategories(regionId: String, cityId: String, restaurantId: String) {
+    override fun loadDishes(regionId: String,
+                            cityId: String,
+                            restaurantId: String,
+                            categoryId: String) {
         mvpView?.showLoading()
         subscription = dataManager
-                .getCategoriesApiCall(regionId, cityId, restaurantId)
+                .getDishesApiCall(regionId, cityId, restaurantId, categoryId)
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
                 .subscribeBy(
-                        onNext = { categoriesResponse ->
-                            mvpView?.setData(categoriesResponse.data)
+                        onNext = { dishesResponse ->
+                            mvpView?.setData(dishesResponse.data)
                             mvpView?.showContent()
                         },
                         onError = { error ->
@@ -41,8 +41,4 @@ class RestaurantDetailsPresenter<V : RestaurantDetailsMvpView>(
             if (it.isDisposed) it.dispose()
         }
     }
-
-    override fun showDishes(cityItem: CityDataItem, restaurantItem: RestaurantDataItem,
-                            categoryItem: CategoryDataItem) =
-            mvpView!!.showDishes(cityItem, restaurantItem, categoryItem)
 }

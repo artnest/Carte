@@ -12,6 +12,7 @@ import by.carte.restaurants.data.remote.model.CategoryDataItem
 import by.carte.restaurants.data.remote.model.CityDataItem
 import by.carte.restaurants.data.remote.model.RestaurantDataItem
 import by.carte.restaurants.ui.base.BaseFragment
+import by.carte.restaurants.ui.dishes.DishesFragment
 import by.carte.restaurants.utils.loadImage
 import by.carte.restaurants.utils.rx.AppSchedulerProvider
 import kotlinx.android.synthetic.main.fragment_restaurant_details.*
@@ -140,12 +141,12 @@ class RestaurantDetailsFragment : RestaurantDetailsMvpView, CategoriesAdapter.Ca
 
     override fun showDishes(cityItem: CityDataItem, restaurantItem: RestaurantDataItem,
                             categoryItem: CategoryDataItem) {
-        // TODO: show dialog fragment with dishes
+        DishesFragment.newInstance(cityItem, restaurantItem, categoryItem).show(activity!!.supportFragmentManager, "aaa")
     }
 
     companion object {
         fun newInstance(cityItem: CityDataItem,
-                        restaurantItem: RestaurantDataItem): RestaurantDetailsFragment =
+                        restaurantItem: RestaurantDataItem) =
                 RestaurantDetailsFragment().apply {
                     arguments = Bundle().apply {
                         putParcelable(ARGUMENT_CITY, cityItem)
