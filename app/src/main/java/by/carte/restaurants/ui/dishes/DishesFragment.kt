@@ -11,7 +11,7 @@ import by.carte.restaurants.data.remote.model.CategoryDataItem
 import by.carte.restaurants.data.remote.model.CityDataItem
 import by.carte.restaurants.data.remote.model.DishDataItem
 import by.carte.restaurants.data.remote.model.RestaurantDataItem
-import by.carte.restaurants.ui.base.BaseDialogFragment
+import by.carte.restaurants.ui.base.BaseFragment
 import by.carte.restaurants.utils.rx.AppSchedulerProvider
 import kotlinx.android.synthetic.main.fragment_dishes.*
 import kotlinx.android.synthetic.main.partial_error_view.*
@@ -22,7 +22,7 @@ private const val ARGUMENT_CITY = "ARGUMENT_CITY"
 private const val ARGUMENT_RESTAURANT = "ARGUMENT_RESTAURANT"
 private const val ARGUMENT_CATEGORY = "ARGUMENT_CATEGORY"
 
-class DishesFragment : DishesMvpView, BaseDialogFragment() {
+class DishesFragment : DishesMvpView, BaseFragment() {
 
     lateinit var presenter: DishesMvpPresenter<DishesMvpView>
 
@@ -73,7 +73,6 @@ class DishesFragment : DishesMvpView, BaseDialogFragment() {
 
     override fun showLoading() {
         recycler_dishes.visibility = View.INVISIBLE
-        recycler_dishes.visibility = View.INVISIBLE
         loading_view.visibility = View.VISIBLE
         error_view.visibility = View.GONE
     }
@@ -85,13 +84,11 @@ class DishesFragment : DishesMvpView, BaseDialogFragment() {
 
     override fun showContent() {
         recycler_dishes.visibility = View.VISIBLE
-        recycler_dishes.visibility = View.VISIBLE
         loading_view.visibility = View.GONE
         error_view.visibility = View.GONE
     }
 
     override fun showError(message: String?) {
-        recycler_dishes.visibility = View.INVISIBLE
         recycler_dishes.visibility = View.INVISIBLE
         loading_view.visibility = View.GONE
         error_view.visibility = View.VISIBLE

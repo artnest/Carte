@@ -38,7 +38,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.restaurantmap.navigation.NavigationActivity"
+            android:name=".ui.restaurantinfo.navigation.NavigationActivity"
             android:screenOrientation="portrait" />
     </application>
 

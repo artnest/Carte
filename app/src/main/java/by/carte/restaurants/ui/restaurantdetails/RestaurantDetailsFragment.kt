@@ -14,6 +14,7 @@ import by.carte.restaurants.data.remote.model.RestaurantDataItem
 import by.carte.restaurants.ui.base.BaseFragment
 import by.carte.restaurants.ui.dishes.DishesFragment
 import by.carte.restaurants.utils.loadImage
+import by.carte.restaurants.utils.replaceFragmentInActivity
 import by.carte.restaurants.utils.rx.AppSchedulerProvider
 import kotlinx.android.synthetic.main.fragment_restaurant_details.*
 import kotlinx.android.synthetic.main.partial_error_view.*
@@ -141,7 +142,9 @@ class RestaurantDetailsFragment : RestaurantDetailsMvpView, CategoriesAdapter.Ca
 
     override fun showDishes(cityItem: CityDataItem, restaurantItem: RestaurantDataItem,
                             categoryItem: CategoryDataItem) {
-        DishesFragment.newInstance(cityItem, restaurantItem, categoryItem).show(activity!!.supportFragmentManager, "aaa")
+        activity!!.replaceFragmentInActivity(DishesFragment.newInstance(cityItem, restaurantItem, categoryItem),
+                R.id.frame_container,
+                true)
     }
 
     companion object {

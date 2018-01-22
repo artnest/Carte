@@ -48,8 +48,8 @@ class RestaurantDetailsActivity : BaseActivity() {
     }
 
     private fun setupViewFragment() {
-        supportFragmentManager.findFragmentById(R.id.frame_container) ?:
-                RestaurantDetailsFragment.newInstance(cityItem, restaurantItem).let {
+        supportFragmentManager.findFragmentById(R.id.frame_container)
+                ?: RestaurantDetailsFragment.newInstance(cityItem, restaurantItem).let {
                     replaceFragmentInActivity(it, R.id.frame_container)
                 }
     }

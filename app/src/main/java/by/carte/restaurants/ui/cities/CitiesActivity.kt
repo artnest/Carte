@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import by.carte.restaurants.R
 import by.carte.restaurants.ui.base.BaseActivity
+import by.carte.restaurants.ui.regions.RegionsFragment
 import by.carte.restaurants.utils.replaceFragmentInActivity
 import kotlinx.android.synthetic.main.partial_toolbar.*
 
