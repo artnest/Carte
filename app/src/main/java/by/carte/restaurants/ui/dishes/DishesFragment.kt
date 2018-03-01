@@ -11,7 +11,7 @@ import by.carte.restaurants.data.remote.model.CategoryDataItem
 import by.carte.restaurants.data.remote.model.CityDataItem
 import by.carte.restaurants.data.remote.model.DishDataItem
 import by.carte.restaurants.data.remote.model.RestaurantDataItem
-import by.carte.restaurants.ui.base.BaseFragment
+import by.carte.restaurants.ui.base._BaseFragment
 import by.carte.restaurants.utils.rx.AppSchedulerProvider
 import kotlinx.android.synthetic.main.fragment_dishes.*
 import kotlinx.android.synthetic.main.partial_error_view.*
@@ -22,7 +22,7 @@ private const val ARGUMENT_CITY = "ARGUMENT_CITY"
 private const val ARGUMENT_RESTAURANT = "ARGUMENT_RESTAURANT"
 private const val ARGUMENT_CATEGORY = "ARGUMENT_CATEGORY"
 
-class DishesFragment : DishesMvpView, BaseFragment() {
+class DishesFragment : DishesMvpView, _BaseFragment() {
 
     lateinit var presenter: DishesMvpPresenter<DishesMvpView>
 

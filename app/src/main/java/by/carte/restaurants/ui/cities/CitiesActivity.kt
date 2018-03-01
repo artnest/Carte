@@ -3,13 +3,13 @@ package by.carte.restaurants.ui.cities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import by.carte.restaurants.R
-import by.carte.restaurants.ui.base.BaseActivity
 import by.carte.restaurants.ui.regions.RegionsFragment
 import by.carte.restaurants.utils.replaceFragmentInActivity
 import kotlinx.android.synthetic.main.partial_toolbar.*
 
-class CitiesActivity : BaseActivity() {
+class CitiesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +18,7 @@ class CitiesActivity : BaseActivity() {
         setUp()
     }
 
-    override fun setUp() {
+    private fun setUp() {
         setupToolbar()
         setupViewFragment()
     }

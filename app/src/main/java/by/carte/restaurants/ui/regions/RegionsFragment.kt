@@ -2,6 +2,7 @@ package by.carte.restaurants.ui.regions
 
 
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +22,7 @@ import kotlinx.android.synthetic.main.partial_loading_view.*
 class RegionsFragment : RegionsMvpView, RegionsAdapter.Callback,
         BaseFragment() {
 
-    lateinit var presenter: RegionsMvpPresenter<RegionsMvpView>
+    private lateinit var presenter: RegionsMvpPresenter<RegionsMvpView>
 
     private lateinit var regionsAdapter: RegionsAdapter
     private lateinit var layoutManager: LinearLayoutManager
@@ -94,7 +95,7 @@ class RegionsFragment : RegionsMvpView, RegionsAdapter.Callback,
     }
 
     override fun openCitiesFragment(regionItem: RegionDataItem) {
-        activity!!.replaceFragmentInActivity(CitiesFragment.newInstance(regionItem),
+        (activity as AppCompatActivity).replaceFragmentInActivity(CitiesFragment.newInstance(regionItem),
                 R.id.frame_container,
                 true)
     }

@@ -23,7 +23,7 @@ private const val ARGUMENT_REGION = "ARGUMENT_REGION"
 class CitiesFragment : CitiesMvpView, CitiesAdapter.Callback,
         BaseFragment() {
 
-    lateinit var presenter: CitiesMvpPresenter<CitiesMvpView>
+    private lateinit var presenter: CitiesMvpPresenter<CitiesMvpView>
 
     private lateinit var regionItem: RegionDataItem
 

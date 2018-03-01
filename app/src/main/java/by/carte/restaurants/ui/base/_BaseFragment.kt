@@ -2,18 +2,18 @@ package by.carte.restaurants.ui.base
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
+import android.support.v4.app.Fragment
 import android.view.View
 
-abstract class BaseDialogFragment : MvpView, DialogFragment() {
+abstract class _BaseFragment : MvpView, Fragment() {
 
-    var activity: BaseActivity? = null
+    var activity: _BaseActivity? = null
         private set
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        if (context is BaseActivity) {
+        if (context is _BaseActivity) {
             activity = context
             activity!!.onFragmentAttached()
         }

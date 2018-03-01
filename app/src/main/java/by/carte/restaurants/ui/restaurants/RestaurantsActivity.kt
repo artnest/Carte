@@ -5,13 +5,13 @@ import android.content.Intent
 import android.os.Bundle
 import by.carte.restaurants.R
 import by.carte.restaurants.data.remote.model.CityDataItem
-import by.carte.restaurants.ui.base.BaseActivity
+import by.carte.restaurants.ui.base._BaseActivity
 import by.carte.restaurants.utils.replaceFragmentInActivity
 import kotlinx.android.synthetic.main.partial_toolbar.*
 
 private const val EXTRA_CITY = "EXTRA_RESTAURANT"
 
-class RestaurantsActivity : BaseActivity() {
+class RestaurantsActivity : _BaseActivity() {
 
     private lateinit var cityItem: CityDataItem
 

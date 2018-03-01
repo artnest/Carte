@@ -11,7 +11,7 @@ import android.widget.Toast
 import by.carte.restaurants.R
 import by.carte.restaurants.utils.NetworkUtils
 
-abstract class BaseActivity : MvpView, BaseFragment.Callback,
+abstract class _BaseActivity : MvpView, _BaseFragment.Callback,
         AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

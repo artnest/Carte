@@ -9,9 +9,9 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 
 class CitiesPresenter<V : CitiesMvpView>(
-        override val dataManager: DataManager,
-        override val schedulerProvider: SchedulerProvider
-) : CitiesMvpPresenter<V>, BasePresenter<V>(dataManager, schedulerProvider) {
+        private val dataManager: DataManager,
+        private val schedulerProvider: SchedulerProvider
+) : CitiesMvpPresenter<V>, BasePresenter<V>() {
 
     private var subscription: Disposable? = null
 
