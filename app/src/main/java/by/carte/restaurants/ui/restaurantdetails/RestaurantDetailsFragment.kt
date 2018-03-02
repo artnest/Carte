@@ -2,6 +2,7 @@ package by.carte.restaurants.ui.restaurantdetails
 
 
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,7 @@ import by.carte.restaurants.R
 import by.carte.restaurants.data.remote.model.CategoryDataItem
 import by.carte.restaurants.data.remote.model.CityDataItem
 import by.carte.restaurants.data.remote.model.RestaurantDataItem
-import by.carte.restaurants.ui.base._BaseFragment
+import by.carte.restaurants.ui.base.BaseFragment
 import by.carte.restaurants.ui.dishes.DishesFragment
 import by.carte.restaurants.utils.loadImage
 import by.carte.restaurants.utils.replaceFragmentInActivity
@@ -25,9 +26,9 @@ private const val ARGUMENT_CITY = "ARGUMENT_CITY"
 private const val ARGUMENT_RESTAURANT = "ARGUMENT_RESTAURANT"
 
 class RestaurantDetailsFragment : RestaurantDetailsMvpView, CategoriesAdapter.Callback,
-        _BaseFragment() {
+        BaseFragment() {
 
-    lateinit var presenter: RestaurantDetailsMvpPresenter<RestaurantDetailsMvpView>
+    private lateinit var presenter: RestaurantDetailsMvpPresenter<RestaurantDetailsMvpView>
 
     private lateinit var cityItem: CityDataItem
     private lateinit var restaurantItem: RestaurantDataItem
@@ -142,7 +143,7 @@ class RestaurantDetailsFragment : RestaurantDetailsMvpView, CategoriesAdapter.Ca
 
     override fun showDishes(cityItem: CityDataItem, restaurantItem: RestaurantDataItem,
                             categoryItem: CategoryDataItem) {
-        activity!!.replaceFragmentInActivity(DishesFragment.newInstance(cityItem, restaurantItem, categoryItem),
+        (activity as AppCompatActivity).replaceFragmentInActivity(DishesFragment.newInstance(cityItem, restaurantItem, categoryItem),
                 R.id.frame_container,
                 true)
     }

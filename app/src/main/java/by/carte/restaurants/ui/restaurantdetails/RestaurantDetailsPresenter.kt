@@ -4,16 +4,16 @@ import by.carte.restaurants.data.DataManager
 import by.carte.restaurants.data.remote.model.CategoryDataItem
 import by.carte.restaurants.data.remote.model.CityDataItem
 import by.carte.restaurants.data.remote.model.RestaurantDataItem
-import by.carte.restaurants.ui.base._BasePresenter
+import by.carte.restaurants.ui.base.BasePresenter
 import by.carte.restaurants.utils.rx.SchedulerProvider
 import com.androidnetworking.error.ANError
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 
 class RestaurantDetailsPresenter<V : RestaurantDetailsMvpView>(
-        override val dataManager: DataManager,
-        override val schedulerProvider: SchedulerProvider
-) : RestaurantDetailsMvpPresenter<V>, _BasePresenter<V>(dataManager, schedulerProvider) {
+        private val dataManager: DataManager,
+        private val schedulerProvider: SchedulerProvider
+) : RestaurantDetailsMvpPresenter<V>, BasePresenter<V>() {
 
     private var subscription: Disposable? = null
 

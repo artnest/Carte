@@ -10,7 +10,7 @@ import by.carte.restaurants.CarteApp
 import by.carte.restaurants.R
 import by.carte.restaurants.data.remote.model.CityDataItem
 import by.carte.restaurants.data.remote.model.RestaurantDataItem
-import by.carte.restaurants.ui.base._BaseFragment
+import by.carte.restaurants.ui.base.BaseFragment
 import by.carte.restaurants.ui.restaurantdetails.RestaurantDetailsActivity
 import by.carte.restaurants.utils.rx.AppSchedulerProvider
 import kotlinx.android.synthetic.main.fragment_restaurants.*
@@ -21,9 +21,9 @@ import kotlinx.android.synthetic.main.partial_loading_view.*
 private const val ARGUMENT_CITY = "ARGUMENT_CITY"
 
 class RestaurantsFragment : RestaurantsMvpView, RestaurantsAdapter.Callback,
-        _BaseFragment() {
+        BaseFragment() {
 
-    lateinit var presenter: RestaurantsMvpPresenter<RestaurantsMvpView>
+    private lateinit var presenter: RestaurantsMvpPresenter<RestaurantsMvpView>
 
     private lateinit var cityItem: CityDataItem
 

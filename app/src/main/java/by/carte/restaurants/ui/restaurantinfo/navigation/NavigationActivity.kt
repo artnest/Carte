@@ -1,9 +1,9 @@
 package by.carte.restaurants.ui.restaurantinfo.navigation
 
-import by.carte.restaurants.ui.base._BaseActivity
+import android.support.v7.app.AppCompatActivity
 
-class NavigationActivity: _BaseActivity() {
+class NavigationActivity : AppCompatActivity() {
 
-    override fun setUp() {
+    private fun setUp() {
     }
 }
